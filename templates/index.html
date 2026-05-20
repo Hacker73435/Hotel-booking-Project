@@ -26,14 +26,14 @@
 
   <main>
 
-  {% if success %}
-<div class="success-banner">
-  <h3>🏨 Thank You for Choosing LuxeStay, <strong>{{ name }}</strong>!</h3>
-  <p>Your booking is officially confirmed. We are delighted to welcome you and have everything prepared for your arrival at the date and time you selected.</p>
-  <p>Should you need any assistance before your stay, feel free to reach out to our front desk. We look forward to making your experience truly exceptional.</p>
-  <p><em>— The LuxeStay Team</em></p>
-</div>
-{% endif %}
+    {% if success %}
+    <div class="success-banner">
+      <h3>🏨 Thank You for Choosing LuxeStay, <strong>{{ name }}</strong>!</h3>
+      <p>Your booking is officially confirmed. We are delighted to welcome you and have everything prepared for your arrival at the date and time you selected.</p>
+      <p>Should you need any assistance before your stay, feel free to reach out to our front desk. We look forward to making your experience truly exceptional.</p>
+      <p><em>— The LuxeStay Team</em></p>
+    </div>
+    {% endif %}
 
     {% if error %}
     <div class="error-banner">
@@ -46,7 +46,6 @@
 
       <form action="/book" method="POST">
 
-        <!-- Personal Information -->
         <fieldset>
           <legend>Personal Information</legend>
 
@@ -70,7 +69,6 @@
           </div>
         </fieldset>
 
-        <!-- Booking Details -->
         <fieldset>
           <legend>Booking Details</legend>
 
@@ -105,7 +103,6 @@
           </div>
         </fieldset>
 
-        <!-- Special Requests -->
         <fieldset>
           <legend>Special Requests <span class="optional">(Optional)</span></legend>
           <div class="form-group">
