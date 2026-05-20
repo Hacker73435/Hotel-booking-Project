@@ -4,17 +4,22 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from database import get_connection
 from datetime import date
-import uvicorn
+import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 app = FastAPI(title="Hotel Booking System")
 
-app.mount("/static", StaticFiles(directory="static"), name="static")
-templates = Jinja2Templates(directory="templates")
+app.mount("/static", StaticFiles(directory=os.path.join(BASE_DIR, "static")), name="static")
+templates = Jinja2Templates(directory=os.path.join(BASE_DIR, "templates"))
 
 
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
+    return templates.TemplateResponse(
+        request=request,
+        name="index.html"
+    )
 
 
 @app.post("/book", response_class=HTMLResponse)
@@ -29,29 +34,28 @@ async def book_room(
     num_guests: int = Form(...),
     special_requests: str = Form(""),
 ):
-    conn = get_connection()
-    cursor = conn.cursor()
-
-    cursor.execute(
-        """
-        INSERT INTO bookings (full_name, email, phone, check_in, check_out, room_type, num_guests, special_requests)
-        VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
-        """,
-        (full_name, email, phone, check_in, check_out, room_type, num_guests, special_requests),
-    )
-    conn.commit()
-    cursor.close()
-    conn.close()
+    success = False
+    try:
+        conn = get_connection()
+        conn.run(
+            "INSERT INTO bookings (full_name, email, phone, check_in, check_out, room_type, num_guests, special_requests) "
+            "VALUES (:full_name, :email, :phone, :check_in, :check_out, :room_type, :num_guests, :special_requests)",
+            full_name=full_name,
+            email=email,
+            phone=phone,
+            check_in=str(check_in),
+            check_out=str(check_out),
+            room_type=room_type,
+            num_guests=num_guests,
+            special_requests=special_requests,
+        )
+        conn.close()
+        success = True
+    except Exception as e:
+        print("DB Error:", e)
 
     return templates.TemplateResponse(
-        "index.html",
-        {
-            "request": request,
-            "success": True,
-            "name": full_name,
-        },
+        request=request,
+        name="index.html",
+        context={"success": success, "name": full_name}
     )
-
-
-if __name__ == "__main__":
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
