@@ -5,6 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Hotel Booking | LuxeStay</title>
   <link rel="stylesheet" href="/static/style.css" />
+  <style>
+    .error-banner {
+      background: #fff5f5;
+      border: 1px solid #fc8181;
+      color: #c53030;
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+  </style>
 </head>
 <body>
 
@@ -14,9 +25,19 @@
   </header>
 
   <main>
-    {% if success %}
-    <div class="success-banner">
-      ✅ Booking confirmed for <strong>{{ name }}</strong>! We'll send a confirmation to your email shortly.
+
+  {% if success %}
+<div class="success-banner">
+  <h3>🏨 Thank You for Choosing LuxeStay, <strong>{{ name }}</strong>!</h3>
+  <p>Your booking is officially confirmed. We are delighted to welcome you and have everything prepared for your arrival at the date and time you selected.</p>
+  <p>Should you need any assistance before your stay, feel free to reach out to our front desk. We look forward to making your experience truly exceptional.</p>
+  <p><em>— The LuxeStay Team</em></p>
+</div>
+{% endif %}
+
+    {% if error %}
+    <div class="error-banner">
+      ❌ {{ error }}
     </div>
     {% endif %}
 
@@ -102,7 +123,7 @@
   </main>
 
   <footer>
-    <p>&copy; 2025 LuxeStay Hotel. All rights reserved.</p>
+    <p>&copy; 2026 LuxeStay Hotel. All rights reserved.</p>
   </footer>
 
   <script>
