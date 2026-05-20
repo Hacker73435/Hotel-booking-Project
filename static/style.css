@@ -1,0 +1,191 @@
+/* ===========================
+   LuxeStay Hotel – style.css
+   =========================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f0f4f8;
+  color: #2d3748;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- Header ---- */
+header {
+  background: linear-gradient(135deg, #1a365d, #2b6cb0);
+  color: #fff;
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.tagline {
+  margin-top: 0.4rem;
+  font-size: 1rem;
+  opacity: 0.85;
+}
+
+/* ---- Main ---- */
+main {
+  flex: 1;
+  max-width: 780px;
+  width: 100%;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+/* ---- Success banner ---- */
+.success-banner {
+  background: #c6f6d5;
+  border: 1px solid #68d391;
+  color: #276749;
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+/* ---- Card ---- */
+.card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 2rem 2.4rem;
+}
+
+.card h2 {
+  font-size: 1.5rem;
+  color: #1a365d;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid #bee3f8;
+  padding-bottom: 0.6rem;
+}
+
+/* ---- Fieldsets ---- */
+fieldset {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1.2rem 1.4rem;
+  margin-bottom: 1.4rem;
+}
+
+legend {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #2b6cb0;
+  padding: 0 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.optional {
+  font-weight: 400;
+  color: #718096;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* ---- Form layout ---- */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.8rem;
+}
+
+label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #4a5568;
+  margin-bottom: 0.35rem;
+}
+
+input,
+select,
+textarea {
+  border: 1px solid #cbd5e0;
+  border-radius: 6px;
+  padding: 0.55rem 0.8rem;
+  font-size: 0.95rem;
+  color: #2d3748;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background: #f7fafc;
+  width: 100%;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #4299e1;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
+  background: #fff;
+}
+
+textarea {
+  resize: vertical;
+}
+
+/* ---- Submit button ---- */
+.btn-submit {
+  display: block;
+  width: 100%;
+  margin-top: 1.6rem;
+  padding: 0.85rem;
+  background: linear-gradient(135deg, #2b6cb0, #1a365d);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: opacity 0.2s, transform 0.1s;
+}
+
+.btn-submit:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.btn-submit:active {
+  transform: translateY(0);
+}
+
+/* ---- Footer ---- */
+footer {
+  text-align: center;
+  padding: 1.2rem;
+  font-size: 0.8rem;
+  color: #718096;
+  background: #edf2f7;
+  border-top: 1px solid #e2e8f0;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 560px) {
+  .card {
+    padding: 1.4rem 1.2rem;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}

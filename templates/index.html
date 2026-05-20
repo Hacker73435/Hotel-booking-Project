@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hotel Booking | LuxeStay</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+
+  <header>
+    <div class="logo">🏨 LuxeStay Hotel</div>
+    <p class="tagline">Your comfort is our priority</p>
+  </header>
+
+  <main>
+    {% if success %}
+    <div class="success-banner">
+      ✅ Booking confirmed for <strong>{{ name }}</strong>! We'll send a confirmation to your email shortly.
+    </div>
+    {% endif %}
+
+    <div class="card">
+      <h2>Reserve Your Room</h2>
+
+      <form action="/book" method="POST">
+
+        <!-- Personal Information -->
+        <fieldset>
+          <legend>Personal Information</legend>
+
+          <div class="form-group">
+            <label for="full_name">Full Name *</label>
+            <input type="text" id="full_name" name="full_name"
+                   placeholder="e.g. Ali Ahmed" required />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" name="email"
+                     placeholder="ali@example.com" required />
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number *</label>
+              <input type="tel" id="phone" name="phone"
+                     placeholder="0300-1234567" required />
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Booking Details -->
+        <fieldset>
+          <legend>Booking Details</legend>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="check_in">Check-in Date *</label>
+              <input type="date" id="check_in" name="check_in" required />
+            </div>
+            <div class="form-group">
+              <label for="check_out">Check-out Date *</label>
+              <input type="date" id="check_out" name="check_out" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="room_type">Room Type *</label>
+              <select id="room_type" name="room_type" required>
+                <option value="" disabled selected>Select a room</option>
+                <option value="Standard">Standard Room</option>
+                <option value="Deluxe">Deluxe Room</option>
+                <option value="Suite">Executive Suite</option>
+                <option value="Family">Family Room</option>
+                <option value="Presidential">Presidential Suite</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="num_guests">Number of Guests *</label>
+              <input type="number" id="num_guests" name="num_guests"
+                     min="1" max="10" value="1" required />
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Special Requests -->
+        <fieldset>
+          <legend>Special Requests <span class="optional">(Optional)</span></legend>
+          <div class="form-group">
+            <label for="special_requests">Any special requirements?</label>
+            <textarea id="special_requests" name="special_requests"
+                      rows="4"
+                      placeholder="e.g. Late check-in, extra pillows, ground floor room..."></textarea>
+          </div>
+        </fieldset>
+
+        <button type="submit" class="btn-submit">Confirm Booking</button>
+
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 LuxeStay Hotel. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Set minimum check-in date to today
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('check_in').setAttribute('min', today);
+
+    // Auto-set check-out minimum when check-in changes
+    document.getElementById('check_in').addEventListener('change', function () {
+      const checkOut = document.getElementById('check_out');
+      checkOut.setAttribute('min', this.value);
+      if (checkOut.value && checkOut.value <= this.value) {
+        checkOut.value = '';
+      }
+    });
+  </script>
+
+</body>
+</html>
