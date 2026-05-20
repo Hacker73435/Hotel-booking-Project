@@ -18,7 +18,8 @@ templates = Jinja2Templates(directory=os.path.join(BASE_DIR, "templates"))
 async def home(request: Request):
     return templates.TemplateResponse(
         request=request,
-        name="index.html"
+        name="index.html",
+        context={"success": False, "error": None}  # ✅ Always pass context
     )
 
 
@@ -35,6 +36,7 @@ async def book_room(
     special_requests: str = Form(""),
 ):
     success = False
+    error = None
     try:
         conn = get_connection()
         conn.run(
@@ -53,9 +55,10 @@ async def book_room(
         success = True
     except Exception as e:
         print("DB Error:", e)
+        error = "Something went wrong while saving your booking. Please try again."  # ✅ Show error to user
 
     return templates.TemplateResponse(
         request=request,
         name="index.html",
-        context={"success": success, "name": full_name}
+        context={"success": success, "name": full_name, "error": error}
     )
