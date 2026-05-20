@@ -35,20 +35,16 @@ async def book_room(
     special_requests: str = Form(""),
 ):
     success = False
+    error_message = None
     try:
-        # Get raw psycopg2 connection
         conn = get_connection()
-        
-        # Create a cursor to execute the query
         cursor = conn.cursor()
         
-        # PostgreSQL query using standard %s placeholders
         query = """
             INSERT INTO bookings (full_name, email, phone, check_in, check_out, room_type, num_guests, special_requests) 
             VALUES (%s, %s, %s, %s, %s, %s, %s, %s);
         """
         
-        # Execute query passing parameters as a tuple
         cursor.execute(
             query,
             (
@@ -63,19 +59,17 @@ async def book_room(
             ),
         )
         
-        # Explicitly commit the transaction so changes save to the database
         conn.commit()
-        
-        # Close the cursor and connection properly
         cursor.close()
         conn.close()
-        
         success = True
     except Exception as e:
         print("DB Error:", e)
+        # Populate the exact error message text your template expects
+        error_message = "Something went wrong while saving your booking. Please try again."
 
     return templates.TemplateResponse(
         request=request,
         name="index.html",
-        context={"success": success, "name": full_name}
+        context={"success": success, "name": full_name, "error": error_message}
     )
