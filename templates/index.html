@@ -4,139 +4,441 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Hotel Booking | LuxeStay</title>
+
   <link rel="stylesheet" href="/static/style.css" />
+
   <style>
-    .error-banner {
-      background: #fff5f5;
-      border: 1px solid #fc8181;
-      color: #c53030;
-      border-radius: 8px;
-      padding: 1rem 1.2rem;
-      margin-bottom: 1.5rem;
-      font-size: 0.95rem;
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
     }
+
+    body{
+      font-family:Arial, Helvetica, sans-serif;
+      background:#f4f6f9;
+      color:#333;
+    }
+
+    header{
+      background:linear-gradient(135deg,#1e3c72,#2a5298);
+      color:white;
+      text-align:center;
+      padding:50px 20px;
+    }
+
+    .logo{
+      font-size:48px;
+      font-weight:bold;
+      margin-bottom:10px;
+    }
+
+    .tagline{
+      font-size:18px;
+      opacity:0.9;
+    }
+
+    main{
+      max-width:1000px;
+      margin:40px auto;
+      padding:20px;
+    }
+
+    .card{
+      background:white;
+      padding:40px;
+      border-radius:14px;
+      box-shadow:0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    h2{
+      margin-bottom:25px;
+      color:#1e3c72;
+      font-size:34px;
+    }
+
+    fieldset{
+      border:1px solid #dcdcdc;
+      border-radius:10px;
+      padding:25px;
+      margin-bottom:25px;
+    }
+
+    legend{
+      padding:0 10px;
+      color:#2a5298;
+      font-weight:bold;
+      font-size:18px;
+    }
+
+    .form-group{
+      margin-bottom:20px;
+      width:100%;
+    }
+
+    .form-row{
+      display:flex;
+      gap:20px;
+    }
+
+    .form-row .form-group{
+      flex:1;
+    }
+
+    label{
+      display:block;
+      margin-bottom:8px;
+      font-weight:600;
+    }
+
+    input,
+    select,
+    textarea{
+      width:100%;
+      padding:14px;
+      border:1px solid #ccc;
+      border-radius:8px;
+      font-size:15px;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus{
+      outline:none;
+      border-color:#2a5298;
+    }
+
+    textarea{
+      resize:vertical;
+    }
+
+    .btn-submit{
+      width:100%;
+      padding:16px;
+      border:none;
+      background:#1e3c72;
+      color:white;
+      font-size:18px;
+      border-radius:10px;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .btn-submit:hover{
+      background:#16325c;
+    }
+
+    .success-banner{
+      background:#f0fff4;
+      border:1px solid #38a169;
+      color:#22543d;
+      padding:20px;
+      border-radius:10px;
+      margin-bottom:25px;
+      line-height:1.7;
+    }
+
+    .error-banner{
+      background:#fff5f5;
+      border:1px solid #fc8181;
+      color:#c53030;
+      padding:20px;
+      border-radius:10px;
+      margin-bottom:25px;
+      line-height:1.6;
+    }
+
+    footer{
+      text-align:center;
+      padding:30px;
+      color:#777;
+    }
+
+    .optional{
+      color:#888;
+      font-size:14px;
+    }
+
+    @media(max-width:768px){
+
+      .form-row{
+        flex-direction:column;
+      }
+
+      .logo{
+        font-size:36px;
+      }
+
+      .card{
+        padding:25px;
+      }
+    }
+
   </style>
 </head>
+
 <body>
 
-  <header>
-    <div class="logo">🏨 LuxeStay Hotel</div>
-    <p class="tagline">Your comfort is our priority</p>
-  </header>
+<header>
+  <div class="logo">🏨 LuxeStay Hotel</div>
+  <p class="tagline">Your comfort is our priority</p>
+</header>
 
-  <main>
+<main>
 
-    {% if success %}
-    <div class="success-banner">
-      <h3>🏨 Thank You for Choosing LuxeStay, <strong>{{ name }}</strong>!</h3>
-      <p>Your booking is officially confirmed. We are delighted to welcome you and have everything prepared for your arrival at the date and time you selected.</p>
-      <p>Should you need any assistance before your stay, feel free to reach out to our front desk. We look forward to making your experience truly exceptional.</p>
-      <p><em>— The LuxeStay Team</em></p>
-    </div>
-    {% endif %}
+  {% if success %}
+  <div class="success-banner">
+    <h3>
+      Thank You for Choosing LuxeStay,
+      <strong>{{ name }}</strong>!
+    </h3>
 
-    {% if error %}
-    <div class="error-banner">
-      ❌ {{ error }}
-    </div>
-    {% endif %}
+    <br>
 
-    <div class="card">
-      <h2>Reserve Your Room</h2>
+    <p>
+      Your booking has been successfully confirmed.
+    </p>
 
-      <form action="/book" method="POST">
+    <p>
+      We are excited to welcome you and ensure your stay is comfortable and memorable.
+    </p>
 
-        <fieldset>
-          <legend>Personal Information</legend>
+    <p>
+      We look forward to serving you soon.
+    </p>
+
+    <br>
+
+    <p><strong>— LuxeStay Hotel Team</strong></p>
+  </div>
+  {% endif %}
+
+
+  {% if error %}
+  <div class="error-banner">
+    ❌ Error: {{ error }}
+  </div>
+  {% endif %}
+
+
+  <div class="card">
+
+    <h2>Reserve Your Room</h2>
+
+    <form action="/book" method="POST">
+
+      <fieldset>
+
+        <legend>Personal Information</legend>
+
+        <div class="form-group">
+          <label for="full_name">Full Name *</label>
+
+          <input
+            type="text"
+            id="full_name"
+            name="full_name"
+            placeholder="e.g. Ali Ahmed"
+            required
+          />
+        </div>
+
+        <div class="form-row">
 
           <div class="form-group">
-            <label for="full_name">Full Name *</label>
-            <input type="text" id="full_name" name="full_name"
-                   placeholder="e.g. Ali Ahmed" required />
+            <label for="email">Email Address *</label>
+
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="ali@example.com"
+              required
+            />
           </div>
 
-          <div class="form-row">
-            <div class="form-group">
-              <label for="email">Email Address *</label>
-              <input type="email" id="email" name="email"
-                     placeholder="ali@example.com" required />
-            </div>
-            <div class="form-group">
-              <label for="phone">Phone Number *</label>
-              <input type="tel" id="phone" name="phone"
-                     placeholder="0300-1234567" required />
-            </div>
-          </div>
-        </fieldset>
-
-        <fieldset>
-          <legend>Booking Details</legend>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label for="check_in">Check-in Date *</label>
-              <input type="date" id="check_in" name="check_in" required />
-            </div>
-            <div class="form-group">
-              <label for="check_out">Check-out Date *</label>
-              <input type="date" id="check_out" name="check_out" required />
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label for="room_type">Room Type *</label>
-              <select id="room_type" name="room_type" required>
-                <option value="" disabled selected>Select a room</option>
-                <option value="Standard">Standard Room</option>
-                <option value="Deluxe">Deluxe Room</option>
-                <option value="Suite">Executive Suite</option>
-                <option value="Family">Family Room</option>
-                <option value="Presidential">Presidential Suite</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="num_guests">Number of Guests *</label>
-              <input type="number" id="num_guests" name="num_guests"
-                     min="1" max="10" value="1" required />
-            </div>
-          </div>
-        </fieldset>
-
-        <fieldset>
-          <legend>Special Requests <span class="optional">(Optional)</span></legend>
           <div class="form-group">
-            <label for="special_requests">Any special requirements?</label>
-            <textarea id="special_requests" name="special_requests"
-                      rows="4"
-                      placeholder="e.g. Late check-in, extra pillows, ground floor room..."></textarea>
+            <label for="phone">Phone Number *</label>
+
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="0300-1234567"
+              required
+            />
           </div>
-        </fieldset>
 
-        <button type="submit" class="btn-submit">Confirm Booking</button>
+        </div>
 
-      </form>
-    </div>
-  </main>
+      </fieldset>
 
-  <footer>
-    <p>&copy; 2026 LuxeStay Hotel. All rights reserved.</p>
-  </footer>
 
-  <script>
-    // Set minimum check-in date to today
-    const today = new Date().toISOString().split('T')[0];
-    document.getElementById('check_in').setAttribute('min', today);
+      <fieldset>
 
-    // Auto-set check-out minimum when check-in changes
-    document.getElementById('check_in').addEventListener('change', function () {
-      const checkOut = document.getElementById('check_out');
+        <legend>Booking Details</legend>
+
+        <div class="form-row">
+
+          <div class="form-group">
+            <label for="check_in">Check-in Date *</label>
+
+            <input
+              type="date"
+              id="check_in"
+              name="check_in"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="check_out">Check-out Date *</label>
+
+            <input
+              type="date"
+              id="check_out"
+              name="check_out"
+              required
+            />
+          </div>
+
+        </div>
+
+        <div class="form-row">
+
+          <div class="form-group">
+            <label for="room_type">Room Type *</label>
+
+            <select
+              id="room_type"
+              name="room_type"
+              required
+            >
+              <option value="" disabled selected>
+                Select a room
+              </option>
+
+              <option value="Standard">
+                Standard Room
+              </option>
+
+              <option value="Deluxe">
+                Deluxe Room
+              </option>
+
+              <option value="Suite">
+                Executive Suite
+              </option>
+
+              <option value="Family">
+                Family Room
+              </option>
+
+              <option value="Presidential">
+                Presidential Suite
+              </option>
+
+            </select>
+          </div>
+
+          <div class="form-group">
+
+            <label for="num_guests">
+              Number of Guests *
+            </label>
+
+            <input
+              type="number"
+              id="num_guests"
+              name="num_guests"
+              min="1"
+              max="10"
+              value="1"
+              required
+            />
+
+          </div>
+
+        </div>
+
+      </fieldset>
+
+
+      <fieldset>
+
+        <legend>
+          Special Requests
+          <span class="optional">(Optional)</span>
+        </legend>
+
+        <div class="form-group">
+
+          <label for="special_requests">
+            Any special requirements?
+          </label>
+
+          <textarea
+            id="special_requests"
+            name="special_requests"
+            rows="4"
+            placeholder="e.g. Late check-in, extra pillows, ground floor room..."
+          ></textarea>
+
+        </div>
+
+      </fieldset>
+
+
+      <button type="submit" class="btn-submit">
+        Confirm Booking
+      </button>
+
+    </form>
+
+  </div>
+
+</main>
+
+<footer>
+  <p>
+    &copy; 2026 LuxeStay Hotel.
+    All rights reserved.
+  </p>
+</footer>
+
+
+<script>
+
+  // Set minimum check-in date to today
+
+  const today = new Date().toISOString().split('T')[0];
+
+  document
+    .getElementById('check_in')
+    .setAttribute('min', today);
+
+
+  // Update checkout minimum date
+
+  document
+    .getElementById('check_in')
+    .addEventListener('change', function () {
+
+      const checkOut =
+        document.getElementById('check_out');
+
       checkOut.setAttribute('min', this.value);
-      if (checkOut.value && checkOut.value <= this.value) {
+
+      if (
+        checkOut.value &&
+        checkOut.value <= this.value
+      ) {
         checkOut.value = '';
       }
     });
-  </script>
+
+</script>
 
 </body>
 </html>
