@@ -1,26 +1,34 @@
- Hotel Booking System
+# 🏨 Hotel Booking System
 
-A full-stack hotel booking web application built with FastAPI, PostgreSQL, and Jinja2 templates — deployed on Vercel.
+> A full-stack hotel booking web application built with FastAPI, PostgreSQL, and Jinja2 templates — deployed on Vercel.
 
-Show Image
-Show Image
-Show Image
-Show Image
+![Status](https://img.shields.io/badge/Status-Live-brightgreen)
+![Backend](https://img.shields.io/badge/Backend-FastAPI-009688)
+![Database](https://img.shields.io/badge/Database-PostgreSQL-336791)
+![Deployment](https://img.shields.io/badge/Deployed-Vercel-black)
 
-🌐 Live Demo
-👉 hotel-booking-project-one.vercel.app
+---
 
-📌 Features
+## 🌐 Live Demo
 
-🏨 Simple and clean hotel booking form
-⚡ FastAPI backend — high performance Python API
-🗄️ PostgreSQL database integration
-🎨 Clean UI with HTML/CSS via Jinja2 templates
-☁️ Deployed and ready on Vercel
-🔐 Environment variables support via .env
+👉 [hotel-booking-project-one.vercel.app](https://hotel-booking-project-one.vercel.app/)
 
+---
 
-📁 Project Structure
+## 📌 Features
+
+- 🏨 Simple and clean hotel booking form
+- ⚡ FastAPI backend — high performance Python API
+- 🗄️ PostgreSQL database integration
+- 🎨 Clean UI with HTML/CSS via Jinja2 templates
+- ☁️ Deployed and ready on Vercel
+- 🔐 Environment variables support via `.env`
+
+---
+
+## 📁 Project Structure
+
+```
 hotel-booking-project/
 │
 ├── api/
@@ -39,48 +47,91 @@ hotel-booking-project/
 ├── requirements.txt
 ├── vercel.json
 └── README.md
+```
 
-⚙️ Local Setup
-1. Clone the repository
-bashgit clone https://github.com/your-username/hotel-booking-project.git
+---
+
+## ⚙️ Local Setup
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/your-username/hotel-booking-project.git
 cd hotel-booking-project
-2. Create virtual environment
-bashpython -m venv venv
+```
+
+### 2. Create virtual environment
+```bash
+python -m venv venv
 source venv/bin/activate      # Mac/Linux
 venv\Scripts\activate         # Windows
-3. Install dependencies
-bashpip install -r requirements.txt
-4. Setup environment variables
-Create a .env file in the root folder:
+```
+
+### 3. Install dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Setup environment variables
+
+Create a `.env` file in the root folder:
+```
 DATABASE_URL=your_postgresql_connection_string
-5. Setup database
+```
+
+### 5. Setup database
+
 Run the SQL script in your PostgreSQL client:
-bashpsql -U your_user -d your_database -f sql/create_table.sql
-6. Run locally
-bashuvicorn main:app --reload
-Then open: http://127.0.0.1:8000
+```bash
+psql -U your_user -d your_database -f sql/create_table.sql
+```
 
-☁️ Deployment on Vercel
+### 6. Run locally
+```bash
+uvicorn main:app --reload
+```
+Then open: [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
-Push your project to GitHub
-Go to vercel.com → Import project
-Add environment variable in Vercel dashboard:
+---
 
+## ☁️ Deployment on Vercel
+
+1. Push your project to GitHub
+2. Go to [vercel.com](https://vercel.com) → Import project
+3. Add environment variable in Vercel dashboard:
+   ```
    DATABASE_URL = your_postgresql_connection_string
+   ```
+4. Click **Deploy** 🚀
 
-Click Deploy 🚀
+---
 
+## 🛠️ Tech Stack
 
-🛠️ Tech Stack
-LayerTechnologyBackendFastAPI (Python)DatabasePostgreSQLTemplatesJinja2FrontendHTML5, CSS3DeploymentVercel
+| Layer | Technology |
+|-------|-----------|
+| Backend | FastAPI (Python) |
+| Database | PostgreSQL |
+| Templates | Jinja2 |
+| Frontend | HTML5, CSS3 |
+| Deployment | Vercel |
 
-👨‍💻 Developer
-Arslan Saeed
+---
 
-🎓 University of Management and Technology (UMT), Lahore
-🏛️ Department of Cyber Security
-📧 arslanbrall@gmail.com
+## 👨‍💻 Developer
 
+**Arslan Saeed**
+- 🎓 University of Management and Technology (UMT), Lahore
+- 🏛️ Department of Cyber Security
+- 📧 [arslanbrall@gmail.com](mailto:arslanbrall@gmail.com)
 
-📄 License
-This project is open source and available under the MIT License.
+---
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+<div align="center">
+  <strong>Built with ❤️ using FastAPI & PostgreSQL</strong>
+</div>
