@@ -82,7 +82,7 @@ Python
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/614621b9-75af-4f02-801e-9e65f5f2c3c8" />
 
 👨‍💻 Author
-Your Name: Arslan
+ Name: Arslan Saeed
 University: UMT
 Field: Cyber Security Student
 📄 License
