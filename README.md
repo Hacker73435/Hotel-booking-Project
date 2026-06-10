@@ -5,9 +5,8 @@ A full-stack hotel booking web application built using FastAPI, PostgreSQL, HTML
 🚀 Live Project
 
 (https://hotel-booking-project-one.vercel.app/)
-
-https://your-project-name.vercel.app
 📌 Features
+
 🏨 Simple hotel booking form
 ⚡ FastAPI backend (high performance API)
 🗄️ PostgreSQL database integration
@@ -15,6 +14,8 @@ https://your-project-name.vercel.app
 ☁️ Ready for deployment on Vercel
 🔐 Environment variables support (.env)
 📁 Project Structure
+
+
 hotel-booking-project/
 ├── api/
 │   └── index.py          # Vercel entry point
@@ -32,17 +33,20 @@ hotel-booking-project/
 ├── requirements.txt
 ├── vercel.json
 └── README.md
+
 ⚙️ Installation & Setup
+
 1. Clone the repository
+   
 git clone https://github.com/your-username/hotel-booking-project.git
 cd hotel-booking-project
-2. Create virtual environment
+3. Create virtual environment
 python -m venv venv
 source venv/bin/activate   # Mac/Linux
 venv\Scripts\activate      # Windows
-3. Install dependencies
+4. Install dependencies
 pip install -r requirements.txt
-4. Setup environment variables
+5. Setup environment variables
 
 Create a .env file:
 
@@ -70,7 +74,8 @@ Jinja2 Templates
 HTML/CSS
 Vercel
 Python
-📸 UI Preview
+
+                       📸 UI Preview
 
 (<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/3d530bd2-d9e4-4bf0-8636-694959d99720" />
 )
